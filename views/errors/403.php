@@ -1,4 +1,4 @@
-<?php $page_title = "page not found"; ?>
+<?php $page_title = "Forbidden"; ?>
 <?php $config = require "./config.php"; ?>
 <?php 
 

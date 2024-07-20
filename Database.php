@@ -48,12 +48,36 @@ class Database {
         return $this->statment->fetch();
     }
 
+    /**
+     * return result for query and if query not return result (Null) fail and abort with error 404 
+     * @return mixed
+     */
     public function findOrFail(){
         $result = $this->find();
         if(!$result){
             Route::abort();
         }
         
+        return $result ;
+    }
+
+
+    /**
+     * 
+     * get all result as array of data
+     * @return array
+     */
+    public function get(){
+        return $this->statment->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     *  return result as array or fail with abort(404) Not Found 
+     * @return array
+     */
+    public function getOrFail(){
+        $result = $this->get();
+        if(!$result) {Route::abort();}
         return $result ;
     }
    

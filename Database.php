@@ -4,6 +4,7 @@
 class Database {
 
 
+    public $statment ; 
     protected $pdo ;
     /**
      * Summary of __construct
@@ -33,10 +34,27 @@ class Database {
     {
 
 
-        $statment = $this->pdo->prepare($statment);
-        $statment->execute($param);
-        return $statment ; 
+        $this->statment = $this->pdo->prepare($statment);
+        $this->statment->execute($param);
+       return $this ;
     }
 
+
+    /**
+     * fetch qeuery result
+     * @return mixed
+     */
+    public function find(){
+        return $this->statment->fetch();
+    }
+
+    public function findOrFail(){
+        $result = $this->find();
+        if(!$result){
+            Route::abort();
+        }
+        
+        return $result ;
+    }
    
 }

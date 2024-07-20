@@ -11,11 +11,16 @@ class Database {
      */
     public function  __construct($config)
     {   
-       
-        $username = $config['username'];
-        $password = $config['password']; 
-        $dsn =  $config['drivier'] .":" . http_build_query($config['dsn'] , '' , ';');
+        
+        try {
+            $username = $config['username'];
+            $password = $config['password']; 
+            $dsn =  $config['driver'] .":" . http_build_query($config['dsn'] , '' , ';');
         $this->pdo = new PDO($dsn, $username , $password);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+       
     }
 
     /**
@@ -29,8 +34,8 @@ class Database {
 
 
         $statment = $this->pdo->prepare($statment);
-        return   $statment->execute($param);
-         
+        $statment->execute($param);
+        return $statment ; 
     }
 
    

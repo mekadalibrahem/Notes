@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * simple route class for routing use for any page in your web site 
+ * simple route class for routing user for any page in your web site 
  */
 class Route{
     
     // list of route avilable in web site
-    public static $routte_list = [
+    public static $route_list = [
             "/" => "./controllers/home.php" ,
             "/about" => "./controllers/about.php" ,
             "/notes" => "./controllers/notes.php" ,
@@ -29,13 +29,13 @@ class Route{
     /**
      * route use to specifc page by uri requested   (if request not exists abort error 404 not found)
      * @param  $request uri for request 
-     * @param  $routte_list route list will search for uri in it 
+     * @param  $route_list route list will search for uri in it 
      * @return void
      */
-    public static function route($request , $routte_list) {
+    public static function route($request , $route_list) {
        
-        if(array_key_exists($request , $routte_list)) {
-            require $routte_list[$request] ;
+        if(array_key_exists($request , $route_list)) {
+            require $route_list[$request] ;
         }else{
             
            Route::abort(404);

@@ -8,6 +8,10 @@ class Route{
     // list of route avilable in web site
     public static $routte_list = [
             "/" => "./controllers/home.php" ,
+            "/about" => "./controllers/about.php" ,
+            "/notes" => "./controllers/notes.php" ,
+            "/note" => "./controllers/note.php",
+
     ];
 
 

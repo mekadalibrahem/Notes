@@ -7,9 +7,7 @@ $ntoe_id = $_GET['id'];
 $note = $db->query("SELECT * FROM `notes` WHERE id = ?" , [$ntoe_id])->findOrFail();
 
 
-// check if this note belong for current user and can see it 
-if($note['user_id'] !== $current_user){
-    Route::abort(Response::FORBIDDEN);
-   
-}
+authorize($note['user_id'] === $current_user);
+
+
 require "./views/note.view.php";

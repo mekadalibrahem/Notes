@@ -23,6 +23,7 @@ class Route{
     public static function abort($code = 404){
         
         require "./views/errors/$code.php" ;
+        die();
     }
 
 

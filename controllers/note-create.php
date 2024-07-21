@@ -1,5 +1,5 @@
 <?php 
-
+require "./Validator.php";
 $page_title = "New Note" ;
 $config = require "./config.php";
 $db = new Database($config['database']) ;
@@ -10,8 +10,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     // defain errors list if found any error 
     $errors = [] ;
     
-    if(strlen($content) === 0){
-        $errors[] = 'content is required';
+    if(!Validator::string($content ,1,1000)){
+        $errors[] = 'content is invalid is required and not more that 1,..., 1000 characters';
     }
     if(empty($errors)){
         $db->query("INSERT INTO notes(content , user_id) VALUES(:content ,:user_id)",[

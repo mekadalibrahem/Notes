@@ -1,14 +1,15 @@
 <?php 
-require "./Validator.php";
+require  base_path("Validator.php");
 $page_title = "New Note" ;
-$config = require "./config.php";
+$config = require base_path("config.php");
 $db = new Database($config['database']) ;
-
+$errors = [] ;
+$content = "" ;
 if($_SERVER['REQUEST_METHOD'] === "POST"){
     // get request data and save new note 
     $content = $_POST['content'];
     // defain errors list if found any error 
-    $errors = [] ;
+   
     
     if(!Validator::string($content ,1,1000)){
         $errors[] = 'content is invalid is required and not more that 1,..., 1000 characters';
@@ -26,4 +27,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
 
 
 
-require "./views/notes/create.view.php";
+view("notes/create.view.php", [
+    "content" => $content ,
+    "errors" => $errors ,
+    "page_title" => $page_title ,
+    'config' => $config,
+]);

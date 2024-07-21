@@ -1,6 +1,8 @@
 <?php 
-$page_title = "About"; 
-$config = require "./config.php";
 
+$config = require base_path("config.php");
 
-require "./views/about.view.php";
+view("about.view.php" , [
+    "page_title" => "About",
+    "config" => $config,
+]);

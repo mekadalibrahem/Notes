@@ -1,6 +1,11 @@
 <?php 
-require "views/partials/head.php"; 
-require "views/partials/nav.php"; 
+view("partials/head.php",[
+  "page_title" => $page_title,
+  "config" => $config,
+]); 
+view("partials/nav.php",[
+  "page_title" => $page_title,
+]); 
 ?>
 
 
@@ -35,5 +40,5 @@ require "views/partials/nav.php";
 
 
 <?php
-require "views/partials/footer.php";
+view("partials/footer.php");
 ?>

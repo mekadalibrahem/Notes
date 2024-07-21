@@ -1,11 +1,16 @@
 <?php 
-$config =  require "./config.php";
-require "./functions.php";
-require "./Route.php";
-require  "./Database.php" ;
-require "./Response.php";
-$route_list = require "./routes.php";
-$db = new Database($config['database']);
+
+const BASE_PATH =  __DIR__ . "/../" ;
+require   BASE_PATH ."functions.php";
+$config =  require base_path("config.php");
+
+spl_autoload_register(function ($class) {
+    require base_path("core/$class.php");
+});
+
+$route_list = require base_path("routes.php");
+// $db = new Database($config['database']);
+// dd($db);
 // Make $config and $db global
 global $config, $db;
 $request =  parse_url($_SERVER['REQUEST_URI']);

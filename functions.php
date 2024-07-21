@@ -27,3 +27,19 @@ function authorize($condition , $status = Response::FORBIDDEN){
         Route::abort($status);
     }
 }
+
+
+/**
+ * return full path starting from base path for project
+ * @param mixed $path which concatenate with base path
+ * @return string full path from base path
+ */ 
+function base_path($path){
+    return  BASE_PATH . $path;
+}
+
+
+function view($path , $data = []){
+    extract($data);
+    require base_path("/views/$path" ) ;
+}

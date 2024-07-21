@@ -1,6 +1,6 @@
 <?php 
 $page_title = "Notes" ;
-$config = require "./config.php";
+$config =require base_path("config.php");
 
 $db = new Database($config['database']);
 
@@ -12,4 +12,9 @@ if(isset($_GET['id'])){
 } 
 
 
-require "./views/notes/index.view.php";
+
+view("notes/index.view.php" , [
+    "page_title" => $page_title,
+    "config" => $config,
+    "notes" => $notes,
+]);

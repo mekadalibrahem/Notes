@@ -5,16 +5,8 @@
  */
 class Route{
     
-    // list of route avilable in web site
-    public static $route_list = [
-            "/" => "./controllers/home.php" ,
-            "/about" => "./controllers/about.php" ,
-            "/notes" => "./controllers/notes.php" ,
-            "/note" => "./controllers/note.php",
-
-    ];
-
-
+  
+    
     /**
      * abort method for routing user to error page
      * @param  $code code for error ( you need to add file with named [error code].php)

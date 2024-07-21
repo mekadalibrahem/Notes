@@ -1,11 +1,11 @@
 <?php 
 
 const BASE_PATH =  __DIR__ . "/../" ;
-require   BASE_PATH ."functions.php";
+require   BASE_PATH ."/App/functions.php";
 $config =  require base_path("config.php");
 
 spl_autoload_register(function ($class) {
-    require base_path("core/$class.php");
+    require base_path("App/$class.php");
 });
 
 $route_list = require base_path("routes.php");

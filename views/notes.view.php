@@ -5,23 +5,33 @@ require "partials/nav.php";
 ?>
 <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"> 
 
-<h2>   Hello in Notes page </h2>
 
-<h3>Your Notes : </h3>
+<h3></h3>
+<div>
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Your Notes : </h3>
+   
+    <!-- <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p> -->
+  </div>
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+     <?php foreach($notes as $note) :?>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <a href="/ntoe?id=<?=$note['id']?>" class="text-sm font-medium leading-6 text-gray-900"><?= $note['content'] ?></a>
+      </div>
 
 
-
-<ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-
-    <?php foreach($notes as $note): ?>
-        <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-            <a href="/note?id=<?= $note['id'] ?>">
-            <?= $note['content'] ?>
-            </a>
-    </li>
+        <?php endforeach;?>
      
-       <?php endforeach ; ?>
-</ul>
+    </dl>
+  </div>
+
+ 
+</div>
+
+<div class="ml-4 flex-shrink-0">
+                <a href="/note/create" class="mt-2 font-medium text-indigo-600 hover:text-indigo-500">create new</a>
+              </div>
 
 
 

@@ -28,7 +28,7 @@ class Route{
     public static function route($request , $route_list) {
        
         if(array_key_exists($request , $route_list)) {
-            require $route_list[$request] ;
+            require base_path($route_list[$request]) ;
         }else{
             
            Route::abort(404);

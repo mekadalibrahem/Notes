@@ -1,5 +1,6 @@
 <?php 
-require  base_path("Validator.php");
+use App\Database;
+use App\Validator;
 $page_title = "New Note" ;
 $config = require base_path("config.php");
 $db = new Database($config['database']) ;

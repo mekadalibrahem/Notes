@@ -1,5 +1,5 @@
 <?php 
-
+namespace App ;
 /**
  * simple route class for routing user for any page in your web site 
  */
@@ -31,7 +31,7 @@ class Route{
             require base_path($route_list[$request]) ;
         }else{
             
-           Route::abort(404);
+           Route::abort();
         }
     }
 }

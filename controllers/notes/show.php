@@ -1,4 +1,5 @@
 <?php 
+use App\Database ;
 $page_title = "Note" ;
 $config = require base_path("config.php");
 $db = new Database($config['database']);

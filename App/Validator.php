@@ -1,5 +1,5 @@
 <?php 
-
+namespace App ;
 /**
  * simple validator for check user input data
  */

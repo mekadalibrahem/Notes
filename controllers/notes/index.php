@@ -1,4 +1,5 @@
 <?php 
+use App\Database;
 $page_title = "Notes" ;
 $config =require base_path("config.php");
 

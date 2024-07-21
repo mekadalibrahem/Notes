@@ -12,4 +12,4 @@ if(isset($_GET['id'])){
 } 
 
 
-require "./views/notes.view.php";
+require "./views/notes/index.view.php";

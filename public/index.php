@@ -1,15 +1,21 @@
-<?php 
+<?php
+
+use App\Container;
+use App\Database;
 
 const BASE_PATH =  __DIR__ . "/../" ;
 require   BASE_PATH ."/App/functions.php";
-$config =  require base_path("config.php");
 
 spl_autoload_register(function ($class) {
     $class = str_replace('\\' , DIRECTORY_SEPARATOR , $class) ;
     require base_path("$class.php");
 });
 
-
+Container::bind(Database::class, function () {
+    $db = new Database(config('database'));
+   
+    return $db;
+});
 
 
 use App\Route;

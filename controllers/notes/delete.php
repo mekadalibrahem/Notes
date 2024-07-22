@@ -1,11 +1,13 @@
-<?php 
+<?php
 
+use App\Container;
 use App\Database ;
 use App\Validator; 
-use App\Route ;
+
 $current_user = 1 ;
-$config = require base_path("config.php");
-$db = new Database($config['database']);
+
+$db = Container::resolve(Database::class);
+
 $note_id = $_POST['id'];
 
 if($note_id >0){

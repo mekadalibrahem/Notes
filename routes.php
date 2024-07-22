@@ -14,6 +14,5 @@ $route->get("/about","controllers/about.php");
 $route->get("/notes","controllers/notes/index.php");
 $route->get("/note","controllers/notes/show.php");
 $route->get("/note/create","controllers/notes/create.php");
-$route->post("/note/insert" ,"controller/note/insert.php");
-
+$route->delete('/note' , 'controllers/notes/delete.php');
 

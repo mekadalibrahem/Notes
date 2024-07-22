@@ -78,12 +78,13 @@ class Route{
      * @param  $code code for error ( you need to add file with named [error code].php)
      * @return void 
      */
-    public  function abort($code = 404){
+    public  static function abort($code = 404){
         
         view("/errors/$code.php") ;
         die();
     }
 
+   
 
     /**
      * route use to specifc page by uri requested   (if request not exists abort error 404 not found)
@@ -104,7 +105,7 @@ class Route{
         }
         // route not found  ->  abort user 
         if(!$found){
-            $this->abort();
+            Route::abort();
         }
 
         

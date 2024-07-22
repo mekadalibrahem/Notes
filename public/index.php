@@ -16,7 +16,7 @@ use App\Route;
 $route= new Route();
 $routes = require base_path("routes.php");
 $request =  parse_url($_SERVER['REQUEST_URI']);
-
+global $route;
 $uri = $request['path'];
 
 

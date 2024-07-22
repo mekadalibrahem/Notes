@@ -1,13 +1,9 @@
-<?php 
+<?php
 
-// return [
-//     "/" => "controllers/home.php" ,
-//     "/about" => "controllers/about.php" ,
-//     "/notes" => "controllers/notes/index.php" ,
-//     "/note" => "controllers/notes/show.php",
-//     "/note/create" => "controllers/notes/create.php", 
-// ];
+use App\Container;
+use App\Route;
 
+$route = Container::resolve(Route::class);
 
 $route->get("/","controllers/home.php");
 $route->get("/about","controllers/about.php");

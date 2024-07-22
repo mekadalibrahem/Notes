@@ -53,7 +53,7 @@ function setRequestMethod($method = "GET"){
 
 
 /**
- * return value form config file
+ * return value form config file for nisted keys use  [ dot '.' ] a separator
  * @param mixed $key key for value which will return
  * @return string|Exception|null value or throwig Exeption
  */

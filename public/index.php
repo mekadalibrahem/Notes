@@ -9,13 +9,17 @@ spl_autoload_register(function ($class) {
     require base_path("$class.php");
 });
 
-use App\Route;
 
-$route_list = require base_path("routes.php");
+
+
+use App\Route;
+$route= new Route();
+$routes = require base_path("routes.php");
 $request =  parse_url($_SERVER['REQUEST_URI']);
+
 $uri = $request['path'];
 
 
-Route::route($uri , $route_list);
+$route->route($uri);
 
 

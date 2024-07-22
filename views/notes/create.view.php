@@ -1,7 +1,7 @@
 <?php 
 view("partials/head.php",[
   "page_title" => $page_title,
-  "config" => $config,
+ 
 ]); 
 view("partials/nav.php",[
   "page_title" => $page_title,

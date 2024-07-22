@@ -1,9 +1,11 @@
-<?php 
+<?php
+
+use App\Container;
 use App\Database;
 use App\Validator;
 $page_title = "New Note" ;
-$config = require base_path("config.php");
-$db = new Database($config['database']) ;
+
+$db = Container::resolve(Database::class);
 $errors = [] ;
 $content = "" ;
 
@@ -21,7 +23,7 @@ if(!empty($errors)){
         "content" => $content ,
         "errors" => $errors ,
         "page_title" => $page_title ,
-        'config' => $config,
+       
     ]);
    
   

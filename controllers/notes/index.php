@@ -1,9 +1,11 @@
-<?php 
+<?php
+
+use App\Container;
 use App\Database;
 $page_title = "Notes" ;
-$config =require base_path("config.php");
 
-$db = new Database($config['database']);
+
+$db = Container::resolve(Database::class);
 
 $notes = [] ;
 if(isset($_GET['id'])){
@@ -16,6 +18,6 @@ if(isset($_GET['id'])){
 
 view("notes/index.view.php" , [
     "page_title" => $page_title,
-    "config" => $config,
+   
     "notes" => $notes,
 ]);

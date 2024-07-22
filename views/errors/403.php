@@ -1,8 +1,8 @@
 <?php $page_title = "Forbidden"; ?>
-<?php $config = require base_path("config.php"); ?>
+
 <?php 
 view("partials/head.php",[
-    "config" => $config,
+    
     "page_title" => $page_title,
 ]);  
 view("partials/nav.php",[

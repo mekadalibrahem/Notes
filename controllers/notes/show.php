@@ -1,9 +1,11 @@
-<?php 
+<?php
+
+use App\Container;
 use App\Database ;
 
 $page_title = "Note" ;
-$config = require base_path("config.php");
-$db = new Database($config['database']);
+
+$db = Container::resolve(Database::class);
 $current_user = 1 ; // for this statae only
 $note_id = $_GET['id'] ?? 0;
 $note = null;
@@ -12,7 +14,7 @@ $note = $db->query("SELECT * FROM `notes` WHERE id = :id" , ["id"=>$note_id])->f
 authorize($note['user_id'] === $current_user);
 view("notes/show.view.php" , [
     "page_title" => $page_title,
-    "config" => $config,
+    
     "note" => $note,
 ]);
 

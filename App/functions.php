@@ -44,3 +44,9 @@ function view($path , $data = []){
     extract($data);
     require base_path("/views/$path" ) ;
 }
+
+
+function setRequestMethod($method = "GET"){
+    $method = strtoupper(trim($method));
+    return "<input type='hidden' name='__method' value='$method' />";
+}

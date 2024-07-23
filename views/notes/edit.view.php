@@ -1,12 +1,8 @@
 <?php 
-view("partials/head.php",[
-  "page_title" => $page_title,
- 
-]); 
-view("partials/nav.php",[
-  "page_title" => $page_title,
-]); 
-?>
+
+view("partials/head.php",["page_title" => $page_title ]);  
+view("partials/nav.php"); ?>
+<?php view("partials/header.php" , ["page_title" => $page_title])?>
 
 
 

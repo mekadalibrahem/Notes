@@ -1,14 +1,10 @@
 <?php $page_title = "Forbidden"; ?>
 
 <?php 
-view("partials/head.php",[
-    
-    "page_title" => $page_title,
-]);  
-view("partials/nav.php",[
-    "page_title" => $page_title,
-]); 
-?>
+
+view("partials/head.php",["page_title" => $page_title ]);  
+view("partials/nav.php"); ?>
+<?php view("partials/header.php" , ["page_title" => $page_title])?>
 
 <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

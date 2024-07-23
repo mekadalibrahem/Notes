@@ -11,5 +11,7 @@ $route->get("/notes","controllers/notes/index.php");
 $route->post('/note/create' , "controllers/notes/store.php");
 $route->get("/note/create","controllers/notes/create.php");
 $route->get("/note","controllers/notes/show.php");
+$route->get("/note/edit" , "controllers/notes/edit.php");
+$route->patch("/note/edit", "controllers/notes/update.php");
 $route->delete('/note' , 'controllers/notes/delete.php');
 

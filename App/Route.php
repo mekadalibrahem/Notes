@@ -1,5 +1,6 @@
 <?php 
 namespace App ;
+use App\Middleware\Middleware;
 /**
  * simple route class for routing user for any page in your web site 
  */
@@ -22,8 +23,10 @@ class Route{
         $this->routes[] =[
             'uri' => $uri,
             'controller' => $controller,
-            'method' => $method 
+            'method' => $method,
+            "middleware" => null ,
         ];
+        return $this;
     }
 
      /**
@@ -34,6 +37,7 @@ class Route{
      */
     public function get($uri , $controller){
         $this->register($uri,$controller, "GET");
+        return $this;
     }
     /**
      * register new route in route list with [POST] method
@@ -43,6 +47,7 @@ class Route{
      */
     public function post($uri , $controller){
         $this->register($uri,$controller, "POST");
+        return $this;
     }
     /**
      * register new route in route list with [DELETE] method
@@ -52,6 +57,7 @@ class Route{
      */
     public function delete($uri , $controller){
         $this->register($uri,$controller, "DELETE");
+        return $this;
     }
     /**
      * register new route in route list with [PUT] method
@@ -61,6 +67,7 @@ class Route{
      */
     public function put($uri , $controller){
         $this->register($uri,$controller, "PUT");
+        return $this;
     }
     /**
      * register new route in route list with [PATCH] method
@@ -70,6 +77,7 @@ class Route{
      */
     public function patch($uri , $controller){
         $this->register($uri,$controller, "PATCH");
+        return $this;
     }
   
     
@@ -91,14 +99,19 @@ class Route{
      * @param  $request uri for request 
      * @return void 
      */
-    public  function route($request ) {
-       $method = strtoupper($this->getMthodRequest());
+    public  function route($request) {
+       $method = $this->getMthodRequest();
         // var for save state if found route or not
        $found = false;
        
         foreach($this->routes as $route){
             if($route['uri'] === $request && $route['method'] === $method){
                 $found = true ;
+                if($route['middleware']){
+                    Middleware::resolve($route['middleware']);
+                    
+                }
+                
                 require base_path($route['controller']);
                
             }
@@ -114,13 +127,12 @@ class Route{
     }
 
     public function getMthodRequest(){
-        $method = "GET";
-        if(isset($_POST['__method'])){
-            $method = $_POST['__method'];
-        }else{
-            $method = $_SERVER['REQUEST_METHOD'];
-        }
-        return $method;
+        return strtoupper($_POST['__method'] ?? $_SERVER['REQUEST_METHOD']);   
+    }
+
+    public function middleware($key){
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+        return $this;
     }
 }
 

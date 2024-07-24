@@ -37,4 +37,21 @@ class Validator {
     public static function equal($value1 , $value2 , ){    
         return $value1 === $value2;
       }
+
+    /**
+     * check if value stored befor in a table 
+     * @param mixed $value value will search for it in table
+     * @param mixed $table table which search in it
+     * @param mixed $column column will check it with value
+     * @return bool true if found it (exists) , owtherwise false
+     */
+    public static function exists($value , $table ,$column){
+        $exists = false ;
+        $db = new Database(config("database"));
+        $res =$db->query("SELECT * FROM `$table` WHERE `$column` = :val" , ["val" => $value] )->get();
+        if($res){
+            $exists = true ;
+        }
+        return $exists;
+    }
 }

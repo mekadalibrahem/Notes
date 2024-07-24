@@ -26,4 +26,15 @@ class Validator {
     public static function email($value){
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
+
+
+    /**
+     * check if tow values is equal or not
+     * @param mixed $value1 
+     * @param mixed $value2
+     * @return bool  true if they equal , otherwise false
+     */
+    public static function equal($value1 , $value2 , ){    
+        return $value1 === $value2;
+      }
 }

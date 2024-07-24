@@ -18,28 +18,30 @@ if(!empty($errors)){
     view("auth/create.view.php", 
     [
         "errors"=> $errors,
-        $page_title => "Login",
+       "page_title" => "Login",
+    
     ]);
+    die();
 }
 $user =    $db->query("SELECT * FROM users WHERE email = :email",["email" =>$email])->find();
 
 if(!$user){
     $errors["email"] = "Wrong email dosn't esists";
+}else{
+    if(!password_verify($password,$user['password'])){
+        $errors['password'] = "Wrong Password"; 
+    }
+      
 }
-if(!password_verify($password,$user['password'])){
-    $errors['password'] = "Wrong Password"; 
-}
-
 if(!empty($errors)){
     view("auth/create.view.php", 
     [
         "errors"=> $errors,
-        $page_title => "Login",
+        "page_title" => "Login",
     ]);
+    die();
 }
 
 login($user['id']);
 header('location: /notes');
-
-
 

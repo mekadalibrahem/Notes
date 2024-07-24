@@ -21,7 +21,7 @@ Container::bind(Route::class, function () {
     return new Route();
 });
 // hard codeing (auth user 1 just for now [ will implement auth class ])
-Session::put("auth_user_id" , 1);
+// Session::put("auth_user_id" , 1);
 $routes = require base_path("routes.php");
 $request =  parse_url($_SERVER['REQUEST_URI']);
 

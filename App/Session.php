@@ -13,6 +13,7 @@ class Session {
      * @return mixed value for key if found it , owtherise return null
      */
     public static function get($key) {
+        Session::start();
         return $_SESSION[$key] ?? null;
     }
 
@@ -34,6 +35,7 @@ class Session {
      * @return void
      */
     public static function delete($key) {
+        Session::start();
         unset($_SESSION[$key]);
     }
     /**
@@ -41,6 +43,7 @@ class Session {
      * @return void
      */
     public static function destroy(){
+        Session::start();
         session_destroy();
     }
 
@@ -59,6 +62,8 @@ class Session {
      * @return bool true if exists , otherwise return false 
      */
     public static function has($key){
+        Session::start();
+       
         return isset($_SESSION[$key]);
     }
     

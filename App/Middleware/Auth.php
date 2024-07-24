@@ -7,8 +7,10 @@ class Auth {
     
 
     public function handle(){
+     
+     
         if(!auth()){
-          header("location: /register");
+          header("location: /login");
         }
          
     }

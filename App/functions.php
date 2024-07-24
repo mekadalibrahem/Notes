@@ -81,3 +81,7 @@ function config($key){
 function auth(){
     return Session::has('auth_user_id') ;
 }
+
+function login($user_id){
+    Session::put("auth_user_id" , $user_id);
+}

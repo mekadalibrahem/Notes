@@ -48,7 +48,7 @@ $db = Container::resolve(Database::class);
 $in = $db->query("INSERT INTO users(username, email,password) VALUES(:username , :email , :password)" , [
     "username" => $username ,
     "email" => $email,
-    "password" => $password
+    "password" => password_hash($password ,PASSWORD_BCRYPT),
 ]);
 
 header("location: /register");

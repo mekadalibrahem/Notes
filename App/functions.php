@@ -1,6 +1,7 @@
 <?php 
 use App\Response;
 use App\Route;
+use App\Session;
 function dd($value) { 
 
     echo "<pre>" ;
@@ -74,4 +75,9 @@ function config($key){
         
     }
     return $value ;
+}
+
+
+function auth(){
+    return Session::has('auth_user_id') ;
 }

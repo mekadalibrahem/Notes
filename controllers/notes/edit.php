@@ -3,10 +3,9 @@
 use App\Container;
 use App\Database;
 use App\Route;
-use App\Validator ;
-
+use App\Session;
 $db = Container::resolve(Database::class);
-$current_user = 1 ;
+$current_user = Session::get("auth_user_id") ?? 0 ;
 $id = $_GET['id'] ?? 0 ;
 
 // check if id valid 

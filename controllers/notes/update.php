@@ -4,10 +4,11 @@
 use App\Container;
 use App\Database;
 use App\Route;
+use App\Session;
 use App\Validator ;
 
 $db = Container::resolve(Database::class);
-$current_user = 1 ;
+$current_user = Session::get("auth_user_id") ?? 0;
 $id = $_POST['note_id'] ?? 0 ;
 $content = $_POST['content'];
 $errors = [] ;

@@ -3,6 +3,7 @@
 use App\Container;
 use App\Database;
 use App\Validator;
+use App\Session;
 $page_title = "New Note" ;
 
 $db = Container::resolve(Database::class);
@@ -30,7 +31,7 @@ if(!empty($errors)){
 }else{
     $db->query("INSERT INTO notes(content , user_id) VALUES(:content ,:user_id)",[
         "content"=> $content,
-        "user_id" => 1 
+        "user_id" => Session::get("auth_user_id") ?? 0
     ]);
     
     header("location: /notes");

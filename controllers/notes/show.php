@@ -2,11 +2,11 @@
 
 use App\Container;
 use App\Database ;
-
+use App\Session;
 $page_title = "Note" ;
 
 $db = Container::resolve(Database::class);
-$current_user = 1 ; // for this statae only
+$current_user = Session::get("auth_user_id") ?? 0 ; // for this statae only
 $note_id = $_GET['id'] ?? 0;
 $note = null;
 

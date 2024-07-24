@@ -2,8 +2,9 @@
 
 use App\Container;
 use App\Database;
+use App\Session;
 $page_title = "Notes" ;
-$current_user = 1;
+$current_user = Session::get("auth_user_id") ?? 0;
 
 $db = Container::resolve(Database::class);
 $user_id = $_GET['id'] ?? $current_user ;

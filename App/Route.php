@@ -112,7 +112,7 @@ class Route{
                     
                 }
                 
-                require base_path($route['controller']);
+                require base_path("Http/Controllers/".$route['controller']);
                
             }
         }

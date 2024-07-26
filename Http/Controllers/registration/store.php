@@ -1,5 +1,6 @@
 <?php
 
+use App\Authenticator;
 use App\Container;
 use App\Database;
 
@@ -35,7 +36,7 @@ $in = $db->query("INSERT INTO users(username, email,password) VALUES(:username ,
     "password" => password_hash($password ,PASSWORD_BCRYPT),
 ]);
 
-login($email);
+(new Authenticator())->attemp($email, $password);
 redirect("/");
     
 

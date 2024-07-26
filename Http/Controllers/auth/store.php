@@ -1,15 +1,15 @@
 <?php
 
-use App\Container;
-use App\Database;
+
 
 use Http\Forms\LoginForm;
-$db = Container::resolve(Database::class);
+
 $email = $_POST['email'] ?? false;
 $password = $_POST['password'] ?? false;
 
 $form = new LoginForm();
 
+// check if email and password valid  , check if email exists and check if password currect
 if(!$form->validate($email, $password)){
     view("auth/create.view.php", 
     [
@@ -18,9 +18,8 @@ if(!$form->validate($email, $password)){
     ]);
     die();
 }else{
-    $db = Container::resolve(Database::class);
-    $user = $db->query("SELECT * FROM users WHERE email= :email ", ["email"=>$email])->find();
-    login($user['id']);
+   
+    login($email);
     header('location: /notes');
 }
        

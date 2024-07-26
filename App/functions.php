@@ -79,9 +79,9 @@ function config($key){
 
 
 function auth(){
-    return Session::has('auth_user_id') ;
+    return Session::has('auth_user_email') ;
 }
 
-function login($user_id){
-    Session::put("auth_user_id" , $user_id);
+function login($user_email){
+    Session::put("auth_user_email" , $user_email);
 }

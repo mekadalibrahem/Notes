@@ -1,5 +1,6 @@
 <?php
 
+use App\Authenticator;
 use App\Container;
 use App\Database;
 use App\Validator;
@@ -20,18 +21,18 @@ if(!Validator::string($content ,1,1000)){
 }
 if(!empty($errors)){
 
-    view("notes/create.view.php", [
-        "content" => $content ,
-        "errors" => $errors ,
-        "page_title" => $page_title ,
-       
-    ]);
+    Session::flush("errors" , $errors);
+    redirect("/note/create");
+    
    
   
 }else{
+    $user = (new Authenticator())->user() ;
+    
     $db->query("INSERT INTO notes(content , user_id) VALUES(:content ,:user_id)",[
+       
         "content"=> $content,
-        "user_id" => Session::get("auth_user_id") ?? 0
+        "user_id" => $user['id'],
     ]);
     
     redirect("/notes");

@@ -6,15 +6,18 @@ namespace App;
  */
 class Session {
 
+    public  const FLUSH_KEY = "__flush";
 
     /**
-     * get value by  key
+     * get value by  key 
+     * first search for key in under super key __flush if not found search in key 
      * @param mixed $key key will seacrh for it in session
-     * @return mixed value for key if found it , owtherise return null
+     * @param mixed $default (optional) default value will return if key not found , if not set value will return null 
+     * @return mixed value for key if found it , owtherise return default value 
      */
-    public static function get($key) {
+    public static function get($key , $default = null) {
         Session::start();
-        return $_SESSION[$key] ?? null;
+        return $_SESSION[static::FLUSH_KEY][$key] ?? $_SESSION[$key] ?? $default;
     }
 
 
@@ -65,6 +68,16 @@ class Session {
         Session::start();
        
         return isset($_SESSION[$key]);
+    }
+
+    public static function flush($key , $value){
+        Session::start();
+        $_SESSION[static::FLUSH_KEY][$key] = $value;
+
+    }
+
+    public static  function unflsh(){
+        $_SESSION[static::FLUSH_KEY] = [];
     }
     
 }

@@ -3,7 +3,7 @@
 use App\Authenticator;
 use App\Container;
 use App\Database;
-
+use App\Session;
 use Http\Forms\RegisterForm;
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -17,13 +17,8 @@ $register_form = new RegisterForm();
 
 if(!$register_form->validate($username,$email,$password,$confirm_password)){
     
-    view("registration/create.view.php", 
-        [
-            "page_title" => "register" , 
-            'errors' => $register_form->errors()
-        ]
-    );
-    die();
+    Session::flush("errors" , $register_form->errors());
+    redirect("/register");
 
 }
 

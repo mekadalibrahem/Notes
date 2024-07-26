@@ -4,7 +4,7 @@
 
 use App\Authenticator;
 use Http\Forms\LoginForm;
-
+use App\Session;
 $email = $_POST['email'] ?? false;
 $password = $_POST['password'] ?? false;
 
@@ -20,12 +20,10 @@ if($form->validate($email, $password)){
     }
 }
 
-view("auth/create.view.php", 
-[
-    "errors"=> $form->errors(),
-    "page_title" => "Login",
-]);
-die();
+
+Session::flush("errors" , $form->errors());
+
+redirect("/login");
 
 
     

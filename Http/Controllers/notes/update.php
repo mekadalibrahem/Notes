@@ -25,12 +25,12 @@ if(!Validator::string($content ,1,1000)){
 $note = $db->query("SELECT * FROM notes WHERE id= :id" , ["id" => $id])->findOrFail();
 authorize($note['user_id'] === $current_user);
 
+
+
 if(!empty($errors)){
-    view("notes/edit.view.php" , [
-        "page_title" => "Edit Note",
-        "note" => $note ,
-        "errors" => $errors 
-    ]);
+    Session::flush("errors" , $errors);
+    redirect("/notes/edit");
+  
 }else{
      $db->query("UPDATE `notes` SET `content`=:content WHERE id=:id" , ["content" => $content , "id" => $id]);
      redirect("location: /notes");

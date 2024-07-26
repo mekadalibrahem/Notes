@@ -1,16 +1,15 @@
 <?php
 
+use App\Authenticator;
 use App\Container;
 use App\Database;
-use App\Session;
-$page_title = "Notes" ;
-$current_user = Session::get("auth_user_id") ?? 0;
 
+$page_title = "Notes" ;
+$user = (new Authenticator())->user();
 $db = Container::resolve(Database::class);
-$user_id = $_GET['id'] ?? $current_user ;
 $notes = [] ;
 
-$notes = $db->query("SELECT * FROM `notes` WHERE user_id = ?" , [$user_id])->get();
+$notes = $db->query("SELECT * FROM `notes` WHERE user_id = ?" , [$user['id']])->get();
 
 
 
@@ -18,6 +17,5 @@ $notes = $db->query("SELECT * FROM `notes` WHERE user_id = ?" , [$user_id])->get
 
 view("notes/index.view.php" , [
     "page_title" => $page_title,
-   
     "notes" => $notes,
 ]);

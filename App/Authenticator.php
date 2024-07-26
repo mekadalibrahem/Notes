@@ -27,7 +27,7 @@ class Authenticator {
     }
 
     public function auth(){
-        return Session::has('auth_user_email') ;
+        return Session::get('auth_user_email' , false) ;
     }
 
     public function user(){

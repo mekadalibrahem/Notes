@@ -36,7 +36,7 @@ $in = $db->query("INSERT INTO users(username, email,password) VALUES(:username ,
 ]);
 
 login($email);
-header("location: /");
+redirect("/");
     
 
 

@@ -10,7 +10,7 @@ class Auth {
      
      
         if(!auth()){
-          header("location: /login");
+          redirect("/login");
         }
          
     }

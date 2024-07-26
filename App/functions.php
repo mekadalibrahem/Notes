@@ -93,3 +93,8 @@ function cardinate_verify($email , $password){
 function login($user_email){
     Session::put("auth_user_email" , $user_email);
 }
+
+function redirect($path){
+    header("location: {$path}");
+    die();
+}

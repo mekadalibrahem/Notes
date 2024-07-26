@@ -20,7 +20,7 @@ if(!$form->validate($email, $password)){
 }else{
     if(cardinate_verify($email, $password)){
         login($email);
-        header('location: /notes');
+        redirect('/');
     }else{
        
         view("auth/create.view.php", 

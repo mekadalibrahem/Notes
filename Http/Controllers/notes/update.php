@@ -33,6 +33,6 @@ if(!empty($errors)){
     ]);
 }else{
      $db->query("UPDATE `notes` SET `content`=:content WHERE id=:id" , ["content" => $content , "id" => $id]);
-     header("location: /notes");
+     redirect("location: /notes");
 }
 

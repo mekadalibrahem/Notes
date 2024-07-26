@@ -7,7 +7,7 @@ class Guest {
 
     public function handle(){
         if(auth()){
-            header("location: /");
+            redirect("/");
         }
     }
 }

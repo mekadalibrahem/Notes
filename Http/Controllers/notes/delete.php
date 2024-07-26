@@ -18,7 +18,7 @@ if($note_id >0){
         // if authorized 
         $db->query("DELETE FROM notes WHERE id = :id" , ["id" =>$note_id]);
         
-        header("location: /notes");
+        redirect("/notes");
        
     }    
 }

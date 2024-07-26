@@ -34,7 +34,7 @@ if(!empty($errors)){
         "user_id" => Session::get("auth_user_id") ?? 0
     ]);
     
-    header("location: /notes");
+    redirect("/notes");
 }
 
 

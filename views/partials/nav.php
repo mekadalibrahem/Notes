@@ -32,7 +32,11 @@
         <div class="hidden sm:ml-6 sm:block">
         <div class="flex space-x-4">
         <a href="/" class="<?= isUri("/") ? "bg-gray-900 text-white" : "hover:bg-gray-700 text-gray-300 hover:text-white" ?> rounded-md  px-3 py-2 text-sm font-medium " >Home</a>
-        <?php if(auth()) : ?>
+        <?php
+
+                            use App\Authenticator;
+
+ if((new Authenticator())->auth()) : ?>
          
               
              
@@ -43,7 +47,7 @@
          
        
      <?php endif?>
-     <?php if(!auth()) : ?>
+     <?php if(!(new Authenticator())->auth()) : ?>
          
       <a href="/register" class=" <?= isUri("/register") ? "bg-gray-900 text-white" : "hover:bg-gray-700 text-gray-300 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium ">Register</a>
          <a href="/login" class=" <?= isUri("/login") ? "bg-gray-900 text-white" : "hover:bg-gray-700 text-gray-300 hover:text-white" ?> rounded-md px-3 py-2 text-sm font-medium ">Login</a>
@@ -64,13 +68,13 @@
     <div class="space-y-1 px-2 pb-3 pt-2">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
       <a href="/" class="<?= isUri('/') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">Home</a>
-      <?php if(auth()) : ?>
+      <?php if((new Authenticator())->auth()) : ?>
         <a href="/about" class="<?= isUri('/about') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">About</a>
         <a href="/notes" class="<?= isUri('/notes') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">Notes</a>
         <a href="/note" class="<?= isUri('/note') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">note</a>
         <a href="/logout" class="<?= isUri('/logout') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">Logout</a>
         <?php endif;  ?>
-        <?php if(!auth()) : ?>
+        <?php if(!(new Authenticator())->auth()) : ?>
         <a href="/register" class="<?= isUri('/register') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">Register</a>
         <a href="/login" class="<?= isUri('/login') ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"  ?>   block rounded-md  px-3 py-2 text-base font-medium ">login</a>
        

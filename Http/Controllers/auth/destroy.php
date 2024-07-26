@@ -1,7 +1,7 @@
 <?php 
-use App\Session;
+use App\Authenticator;
 
 
-Session::destroy();
 
+(new Authenticator())->logout();
 redirect("/login");

@@ -81,18 +81,9 @@ function config($key){
 }
 
 
-function auth(){
-    return Session::has('auth_user_email') ;
-}
 
-function cardinate_verify($email , $password){
-    $db = Container::resolve(Database::class);
-    $user = $db->query("SELECT * FROM users WHERE email = :email" ,["email" =>$email])->find();
-    return password_verify($password , $user["password"]);
-}
-function login($user_email){
-    Session::put("auth_user_email" , $user_email);
-}
+
+
 
 function redirect($path){
     header("location: {$path}");

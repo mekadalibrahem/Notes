@@ -1,5 +1,6 @@
 <?php 
 namespace App\Middleware;
+use App\Authenticator;
 
 
 class Auth {
@@ -9,7 +10,7 @@ class Auth {
     public function handle(){
      
      
-        if(!auth()){
+        if(!(new Authenticator())->auth()){
           redirect("/login");
         }
          

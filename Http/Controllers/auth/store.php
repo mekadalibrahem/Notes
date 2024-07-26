@@ -2,6 +2,7 @@
 
 
 
+use App\Authenticator;
 use Http\Forms\LoginForm;
 
 $email = $_POST['email'] ?? false;
@@ -18,9 +19,8 @@ if(!$form->validate($email, $password)){
     ]);
     die();
 }else{
-    if(cardinate_verify($email, $password)){
-        login($email);
-        redirect('/');
+    if((new Authenticator())->attemp($email , $password)){
+        redirect("/");
     }else{
        
         view("auth/create.view.php", 

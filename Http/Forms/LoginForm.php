@@ -23,12 +23,6 @@ class LoginForm {
 
             if(!$user){
                 $this->errors["email"] = "Wrong email dosn't esists";
-            }else{
-                if(!empty($password)){
-                    if(!password_verify($password,$user['password'])){
-                        $this->errors['password'] = "Wrong Password"; 
-                    }
-                }
             }
         }
        

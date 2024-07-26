@@ -1,7 +1,10 @@
-<?php 
+<?php
+
+use App\Database;
 use App\Response;
 use App\Route;
 use App\Session;
+use App\Container;
 function dd($value) { 
 
     echo "<pre>" ;
@@ -82,6 +85,11 @@ function auth(){
     return Session::has('auth_user_email') ;
 }
 
+function cardinate_verify($email , $password){
+    $db = Container::resolve(Database::class);
+    $user = $db->query("SELECT * FROM users WHERE email = :email" ,["email" =>$email])->find();
+    return password_verify($password , $user["password"]);
+}
 function login($user_email){
     Session::put("auth_user_email" , $user_email);
 }

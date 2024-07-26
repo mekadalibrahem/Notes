@@ -18,9 +18,18 @@ if(!$form->validate($email, $password)){
     ]);
     die();
 }else{
+    if(cardinate_verify($email, $password)){
+        login($email);
+        header('location: /notes');
+    }else{
+       
+        view("auth/create.view.php", 
+        [
+            "errors"=> ['password' => "email or password wrong"],
+            "page_title" => "Login",
+        ]);
+    }
    
-    login($email);
-    header('location: /notes');
 }
        
 

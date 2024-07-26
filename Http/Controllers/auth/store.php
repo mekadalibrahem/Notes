@@ -10,28 +10,25 @@ $password = $_POST['password'] ?? false;
 
 $form = new LoginForm();
 
-// check if email and password valid  , check if email exists and check if password currect
-if(!$form->validate($email, $password)){
-    view("auth/create.view.php", 
-    [
-        "errors"=> $form->errors(),
-        "page_title" => "Login",
-    ]);
-    die();
-}else{
+// check if email and password valid  , check if email exists and
+if($form->validate($email, $password)){
     if((new Authenticator())->attemp($email , $password)){
         redirect("/");
     }else{
-       
-        view("auth/create.view.php", 
-        [
-            "errors"=> ['password' => "email or password wrong"],
-            "page_title" => "Login",
-        ]);
+
+        $form->addError("email","email or password wrong");
     }
-   
 }
-       
+
+view("auth/create.view.php", 
+[
+    "errors"=> $form->errors(),
+    "page_title" => "Login",
+]);
+die();
+
+
+    
 
 
 
